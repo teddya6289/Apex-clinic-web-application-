@@ -329,36 +329,36 @@ Its modular architecture and infrastructure design make it adaptable across mult
 # Few Application UI
 
 ## Login Page
-![Login Page](images/loginpage1.png)
+![Login Page](Images/loginpage1.png)
 
 ## Role-Based Home Pages
 ### Regular User
-![Regular User](images/regularuserUI.png)
+![Regular User](Images/regularuserUI.png)
 
 ### Admin User
-![Admin User](images/adminuserhomepage.png)
+![Admin User](Images/adminuserhomepage.png)
 
 ### System User
-![System User](images/syshomepage.png)
+![System User](Images/syshomepage.png)
 
 ## Clinical Records
-![Patient Records](images/patientrecordmanage.png)
+![Patient Records](Images/patientrecordmanage.png)
 
 ## User Request Triggers Email Verification
-![Email Verification](images/emailverification.png)
+![Email Verification](Images/emailverification.png)
 
-![Awaiting Admin Approval](images/emailverified_waitingA.png)
+![Awaiting Admin Approval](Images/emailverified_waitingA.png)
 
 ## Request Action to Modify
-![Request Rejected](images/usermodrejected.png)
+![Request Rejected](Images/usermodrejected.png)
 
-![Request Approved](images/AdminApproved.png)
+![Request Approved](Images/AdminApproved.png)
 
 ## ETL SYS Access
-![ETL Upload](images/ETL.png)
+![ETL Upload](Images/ETL.png)
 
-![ETL Success](images/ETLsucceeded.png)
+![ETL Success](Images/ETLsucceeded.png)
 
 ## Celery Background Jobs
-![Celery Automation](images/celeryback.png)
+![Celery Automation](Images/celeryback.png)
 
