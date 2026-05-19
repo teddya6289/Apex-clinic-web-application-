@@ -327,29 +327,38 @@ The system demonstrates practical implementation of:
 Its modular architecture and infrastructure design make it adaptable across multiple industries requiring secure, approval-based operational workflows.
 
 # Few Application UI
+
 ## Login Page
-![LoginPage](images/loginpage1.png)
----
-## Role Based Home pages
-![regular](images/regularuserUI.png)
-![Admin](images/adminuserhomepage.png)
-![Sys](images/syshomepage.png)
----
+![Login Page](images/loginpage1.png)
+
+## Role-Based Home Pages
+### Regular User
+![Regular User](images/regularuserUI.png)
+
+### Admin User
+![Admin User](images/adminuserhomepage.png)
+
+### System User
+![System User](images/syshomepage.png)
+
 ## Clinical Records
 ![Patient Records](images/patientrecordmanage.png)
----
-## User request triggers email verification
-![Email verification sent](images/emailverification.png)
-![Email Verified but request await admin action](images/emailverified_waitingA.png)
----
+
+## User Request Triggers Email Verification
+![Email Verification](images/emailverification.png)
+
+![Awaiting Admin Approval](images/emailverified_waitingA.png)
+
 ## Request Action to Modify
-![Admin action denies request](images/usermodrejected.png)
-![Admin action approves request](images/AdminApproved.png)
----
-## ETL Sys Access
-![Load curated record to server](images/ETL.png)
-![Load command succeeded](images/ETLsucceeded.png)
----
-## Celery Background Jobs-Automation
-![Running Celery Background jobs](images/celeryback.png)
+![Request Rejected](images/usermodrejected.png)
+
+![Request Approved](images/AdminApproved.png)
+
+## ETL SYS Access
+![ETL Upload](images/ETL.png)
+
+![ETL Success](images/ETLsucceeded.png)
+
+## Celery Background Jobs
+![Celery Automation](images/celeryback.png)
 
