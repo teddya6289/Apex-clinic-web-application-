@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{%block title%}
+<title> Sys-Apex Clinic Monitory</title>
+{%endblock%}
+
+{%block body%}
+<h1>
+    Apex clinic user management interface
+</h1>
+      <nav class="sys-nav">
+                <ul>  
+                        <li>
+                        <a href="{{url_for('sys.admins')}}"> Apex Clinic Users</a>
+                        </li>
+                        
+                        <li>
+                        <a href="{{url_for('sys.scheduleload')}}">Upload records to server</a>
+                        </li>
+                </ul>
+            
+        </nav>
+{%endblock%}

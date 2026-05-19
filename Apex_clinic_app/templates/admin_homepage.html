@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block title%}
+  <title>Admin Access</title>
+{%endblock%}
+
+{% block body %}
+      <nav class="nav-admin">
+        <ul>
+            <li>
+                <a href="{{url_for('admin.pending_users')}}" class="{% if request.endpoint in ['admin.approve_user', 'admin.reject_user'] %}active{% endif %}">
+                  Review Patient Record Modification - Doctors
+                </a>
+            </li>
+           
+        </ul>
+      </nav>
+{% endblock %}

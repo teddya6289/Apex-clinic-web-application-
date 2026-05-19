@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div>
+    <form name="lform" action="{{url_for('sys.scheduleload')}}" method="POST">
+        {{form.hidden_tag()}}
+        <div class="upload-form">
+            {{form.filename.label()}}
+            {{form.filename()}}
+            {% for error in form.filename.errors%}
+                            <span class="filename-error">
+                                {{error}}
+                            </span>
+            {%endfor%}
+            <span class="upload-submit-b">{{form.consult()}}</span>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

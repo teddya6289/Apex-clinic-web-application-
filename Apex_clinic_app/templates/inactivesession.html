@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}<title>as.timedout</title>{% endblock %}
+
+{% block body %}
+
+
+<p class="currentuser_email">Re-authenticate for user:{{currentuser_email}}</p> 
+<form   method= "POST" action="{{url_for('auth.resignin')}}">
+    {{form.hidden_tag()}}
+    <span> Active Session timed out, please enter password to sign in? <span>{{form.passwordA()}}  {{form.loginA()}}</span> 
+    </span>
+</form>
+
+{% endblock %}

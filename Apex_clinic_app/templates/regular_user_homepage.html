@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block title%}
+  <title>user_page</title>
+{%endblock%}
+
+{% block body %}
+      <nav class="nav-user">
+                <ul>  
+                        <li>
+                                <div>
+                                    Manage Patients
+                                </div>
+                                    <ul class="listdown">
+                                        <li>
+                                            <a href="{{url_for('user.records')}}" class="{{ 'active' if request.endpoint == 'user.records' else '' }}"> 
+                                                Patient Records
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url_for('user.addpatient',patientID = pid)}}" class="{{ 'active' if request.endpoint == 'user.addpatient' }}">
+                                                Add New Test Result
+                                            </a
+                                        </li>
+                                    </ul>
+                        </li>
+                        
+                </ul>
+            
+        </nav>
+{% endblock %}

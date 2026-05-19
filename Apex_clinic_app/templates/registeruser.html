@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>User registeration</title>
+{% endblock %}
+
+{% block body %} 
+<div class ="container" id="registerformclickctr" >
+    <button id="btn">New user?</button>
+</div>
+<div class="form-register" id ="registerform" style = "display:none;">
+
+    <form name="register" action="{{url_for('main.register')}}" method ="POST">
+        {{form.hidden_tag()}}
+        
+        <div class="form-group">
+            {{form.username.label}} {{form.username()}}
+        </div>   
+       
+        <div class="form-group">
+            {{form.email.label}} {{form.email(size=35)}}
+        </div>   
+        
+        <div class="form-group">
+            {{form.firstname.label}} {{form.firstname(size=35)}}
+        </div> 
+        <div class="form-group">
+            {{form.lastname.label}} {{form.lastname(size=35)}}
+        </div>
+        
+        <div class="form-group" id = "admin">
+            {{form.admin.label}} {{form.admin()}}
+        </div> 
+
+        <div class="form-group" id = "admintoken"  style="display: none;">
+            {{form.token.label}} {{form.token(id = "tokenfield")}}
+        </div> 
+      
+        <div class="form-group">
+        {{form.password.label}} {{form.password()}}
+        </div>
+        
+        <div class="form-group">
+        {{form.confirm_password.label}} {{form.confirm_password()}}
+        </div>
+                {% for error in form.confirm_password.errors%}
+                    <span class="password-error">
+                        {{error}}
+                    </span>
+                {%endfor%}
+            
+        <div class="button">{{form.submit()}}</div>
+
+    </form>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    function toggleField() {
+        const selected = document.querySelector('input[name="admin"]:checked');
+
+        if (!selected) return;
+
+        const tokenDiv = document.getElementById("admintoken");
+        const tokenInput = document.getElementById("tokenfield");
+
+        if (selected.value === "Yes") {
+            tokenDiv.style.display = "block";
+            tokenInput.disabled = false;
+            tokenInput.required = true;
+        } else {
+            tokenDiv.style.display = "none";
+            tokenInput.disabled = true;
+            tokenInput.required = false;
+            tokenInput.value = "";
+        }
+    }
+
+    document.querySelectorAll('input[name="admin"]').forEach(function (el) {
+        el.addEventListener("change", toggleField);
+    });
+
+    
+    toggleField();
+
+
+    
+  const registerContainer = document.getElementById("registerformclickctr");
+
+    if (registerContainer) {
+        registerContainer.addEventListener("click", function (event) {
+            if (event.target && event.target.id === "btn") {
+                const form = document.getElementById("registerform");
+
+                if (form) {
+                    if (form.style.display === "none" || form.style.display === "") {
+                        form.style.display = "block";
+                    } else {
+                        form.style.display = "none"; kj
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
+{% endblock %}

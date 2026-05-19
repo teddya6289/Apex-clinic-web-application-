@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Users waiting Approval </title>
+{% endblock %}
+
+{% block body%}
+<h2>Approval Management:Doctors waiting approval {{users_count}}</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Admin Actions</th>
+  </tr>
+  
+  {% for user in user %}
+  <tr>
+    <td>{{user.firstname}}</td>
+    <td>{{ user.email }}</td>
+    <td>
+      <button type="submit" style="margin-right: 25px;"><a href="{{ url_for('admin.approve_user',user_id=user.user_id,patient_id=user.user_update_per_patient) }}">Approve</a></button>
+      <button type="submit"><a href="{{ url_for('admin.reject_user',user_id=user.user_id,patient_id=user.user_update_per_patient) }}">Reject</a></button>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{%endblock%}

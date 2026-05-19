@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title> Apex Monitory</title>
+{% endblock %}
+
+{% block body%}
+<h3> Active Users</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User Email</th>
+    <th>Admin</th>
+  </tr>
+  
+  {% for app_users in app_users %}
+  <tr>
+    <td>{{ app_users.firstname }}</td>
+    <td>{{app_users.email}}</td>
+    <td>{{app_users.is_admin}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{%endblock%}

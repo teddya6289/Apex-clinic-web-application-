@@ -1,0 +1,88 @@
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${redis_pass}
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${redis_pass}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    
+  web:
+    build: .
+    container_name: flask_app
+    command: flask run --host=0.0.0.0 --port=5000 --debug
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/Apex_clinic_app
+      - ./secrets:/Apex_clinic_app/secrets
+      - C:/clinic_record:/Apex_clinic_app/clinic_record
+      - C:/AS:/Apex_clinic_app/App_key
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_healthy
+      worker:
+        condition: service_started
+      beat:
+        condition: service_started
+      mailhog: 
+        condition: service_started
+    
+
+  worker:
+    build: .
+    container_name: celery_worker
+    command: celery -A Apex_clinic_app.celeryconfig:celery worker --loglevel=info
+    volumes:
+      - C:/Apex_Clinic_Mgt_App/Apex_clinic_app/secrets:/Apex_clinic_app/secrets 
+      - ./secrets:/Apex_clinic_app/secrets
+      - C:/AS:/Apex_clinic_app/App_key
+      
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_healthy
+    
+
+  beat:
+    build: .
+    container_name: celery_beat
+    command: celery -A Apex_clinic_app.scheduleTask_celeryBeat:celery beat --loglevel=info
+    volumes:
+      - .:/Apex_clinic_app
+      - ./secrets:/Apex_clinic_app/secrets
+      - C:/clinic_record:/Apex_clinic_app/clinic_record
+      - C:/AS:/Apex_clinic_app/App_key
+    env_file:
+      - .env
+    depends_on:
+      redis:
+          condition: service_healthy
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name:  mailserver
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    volumes:
+      - mailserver:/data
+    
+    
+
+
+volumes:
+    redis_data:
+    mailserver:
+ 

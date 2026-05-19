@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+            <div class="login-f">
+                <form name="loginform" action="{{url_for('auth.login')}}" method="Post">
+                    {{form.hidden_tag()}}
+                        {{form.identifier.label}}
+                        {{form.identifier()}}
+                        {% for error in form.identifier.errors%}
+                            <span class="password-error">
+                                {{error}}
+                            </span>
+                        {%endfor%}
+        
+                        {{form.password.label}}
+                        {{form.password()}}
+                        {% for error in form.password.errors%}
+                            <span class="password-error">
+                                {{error}}
+                            </span>
+                        {%endfor%}
+                    <span class="login-sumit">
+                        {{form.login()}}
+                    </span>
+                </form>
+
+            </div>
+{%endblock%}

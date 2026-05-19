@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Delete Record</title>{% endblock %}
+
+{% block body %} 
+<form   method= "POST" action="{{url_for('user.deleterecord',ID=ID)}}">
+<p>Are you sure you want to delete the record for Patient ID: {{ ID }}?
+    <div class="sumit"><button type="submit">YES</button>
+    </div>
+    <div class="sumit"><button type="submit"><a href="{{url_for('user.records')}}">NO</a></button>
+    </div>
+</p>
+</form>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}
+<title> record-test-result </title>
+{% endblock %}
+
+{% block body %}
+<div class="enter-test-result">
+        <form action="/patientAdd" method="POST">
+            {{form.hidden_tag()}}
+                <div class="test-r-form">
+                    {{form.patient_id.label}}
+                    {{form.patient_id()}}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.disease.label}}
+                    {{form.disease()}}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.fever.label}}
+                        {% for subfield in form.fever%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.cough.label}}
+                        {% for subfield in form.cough%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.fatigue.label}}
+                        {% for subfield in form.fatigue%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                </div>
+            
+                <div class="test-r-form">
+                    {{form.difficult_breath.label}}
+                        {% for subfield in form.difficult_breath%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.age.label}}
+                    {{form.age()}}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.gender.label}}
+                        {% for subfield in form.gender%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.blood_pressure.label}}
+                    {{form.blood_pressure()}}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.chol_level.label}}
+                    {{form.chol_level()}}
+                </div>
+                
+                <div class="test-r-form">
+                    {{form.outcome.label}}
+                        {% for subfield in form.outcome%}
+                            {{subfield()}} {{subfield.label}}
+                        {%endfor%}
+                </div>
+                
+                <div class="test-s-button">
+                    {{form.submit1()}}
+                </div>
+            
+            </form> 
+</div>           
+
+
+{% endblock %}

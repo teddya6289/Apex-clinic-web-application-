@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %} 
+
+{% endblock %}
+
+{% block body %}
+<div class="patientrecord">
+    <table>
+        <tr>
+        <th>Patient ID</th>
+        <th>Disease</th>
+        <th>Fever</th>
+        <th>Cough</th>
+        <th>Fatigue</th>
+        <th>Difficulty Breathing</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Blood Pressure</th>
+        <th>Cholesterol Level</th>
+        <th>Outcome Variable</th>
+        </tr>
+        {% for record in records_all %}
+                <tr>
+                <td>{{record.patient_id}}</td>
+                <td>{{record.Disease}}</td>
+                <td>{{record.Fever}}</td>
+                <td>{{record.Cough}}</td>
+                <td>{{record.Fatigue}}</td>
+                <td>{{record.Difficult_breath}}</td>
+                <td>{{record.Age}}</td>
+                <td>{{record.Gender}}</td>
+                <td>{{record.Blood_Pressure}}</td>
+                <td>{{record.Cholesterol_Level}}</td>
+                <td>{{record.Outcome_Variable}}</td>
+                <td>
+                    <a href="{{ url_for('user.updatepatient', patientID=record.patient_id) }}">Update</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('user.deleterecord', patientID=record.patient_id) }}">Delete</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('Ai.AiSupport', pid=record.patient_id) }}">
+                                AI Insights
+                    </a>
+                    <span>
+                            Click for Insights of patient condition
+                    </span>
+                </td>
+            </tr>
+        {% endfor %}
+        
+        {%if request.endpoint == "user.updatepatient" %}
+                <div class="update-form">
+                    {%if patient %}
+                        <form name="f-u" action="{{url_for('user.updatepatient', patientID = patientID)}}" method="POST">
+                            <tr>
+                                <td>{{patient.patient_id}}</td>
+                                <td><input type="text" name="Disease" value="{{patient.Disease}}"></td>
+                                <td><select  name="Fever"><option value="Yes" {% if patient.Fever == "Yes"%}selected{%endif%}>Yes</option>
+                                                                    <option value="No" {% if patient.Fever == "No"%}selected{%endif%}>No</option></select></td>
+                                <td><select  name="Cough"><option value="Yes" {% if patient.Cough == "Yes"%}selected{%endif%}>Yes</option>
+                                                                    <option value="No" {% if patient.Cough == "No"%}selected{%endif%}>No</option></select></td>
+                                <td><select  name="Fatigue"><option value="Yes" {% if patient.Fatigue == "Yes"%}selected{%endif%}>Yes</option>
+                                                                    <option value="No" {% if patient.Fatigue == "No"%}selected{%endif%}>No</option></select></td>
+                                <td><select  name="Difficulty_Breath"><option value="Yes" {% if patient.Difficulty_Breath== "Yes"%}selected{%endif%}>Yes</option>
+                                                                    <option value="No" {% if patient.Difficulty_Breath== "No"%}selected{%endif%}>No</option></select></td>
+                                <td><input type="number" name="Age" value="{{patient.Age}}"></td>
+                                <td><select  name="Gender"><option value="Male" {% if patient.Gender == "Male"%}selected{%endif%}>Male</option>
+                                                                    <option value="Female" {% if patient.Gender == "Female"%}selected{%endif%}>Female</option></select></td>
+                                <td><select  name="Blood_Pressure"><option value="High" {% if patient.Blood_Pressure == "High"%}selected{%endif%}>High</option>
+                                                                <option value="Normal" {% if patient.Blood_Pressure  == "Normal"%}selected{%endif%}>Normal</option>
+                                                                <option value="Low" {% if patient.Blood_Pressure  == "Low"%}selected{%endif%}>Low</option></select></td>
+                                <td><select  name="Cholesterol_Level"><option value="High" {% if patient.Cholesterol_Level == "High"%}selected{%endif%}>High</option>
+                                                                <option value="Normal" {% if patient.Cholesterol_Level  == "Normal"%}selected{%endif%}>Normal</option>
+                                                                <option value="Low" {% if patient.Cholesterol_Level == "Low"%}selected{%endif%}>Low</option></select></td>
+                                <td><select  name="Output_Variable"><option value="Positive" {% if patient.Outcome_Variable == "Positive"%}selected{%endif%}>Positive</option>
+                                                                <option value="Negative" {% if patient.Outcome_Variable == "Negative"%}selected{%endif%}>Negative</option></select></td>
+                                <td><button type="submit">Submit</button></td>
+                            </tr>
+                        </form>
+                    {%endif%}
+                </div>
+            {%endif%}
+    </table>
+</div>
+{% endblock %}
